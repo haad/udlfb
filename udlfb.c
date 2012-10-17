@@ -92,7 +92,6 @@ static int dlfb_mmap(struct fb_info *info, struct vm_area_struct *vma)
 			size = 0;
 	}
 
-	vma->vm_flags |= VM_RESERVED;	/* avoid to swap out this VMA */
 	return 0;
 
 }
@@ -911,7 +910,7 @@ static int __init dlfb_init(void)
 
 	res = usb_register(&dlfb_driver);
 	if (res)
-		err("usb_register failed. Error number %d", res);
+		printk("usb_register failed. Error number %d", res);
 
 	printk("VMODES initialized\n");
 
