@@ -661,9 +661,7 @@ static ssize_t dlfb_ops_read(struct fb_info *info, char __user *buf,
 {
 	ssize_t result = -ENOSYS;
 
-#if defined CONFIG_FB_SYS_FOPS
 	result = fb_sys_read(info, buf, count, ppos);
-#endif
 
 	return result;
 }
@@ -679,8 +677,6 @@ static ssize_t dlfb_ops_write(struct fb_info *info, const char __user *buf,
 {
 	ssize_t result = -ENOSYS;
 
-#if defined CONFIG_FB_SYS_FOPS
-
 	struct dlfb_data *dev = info->par;
 	u32 offset = (u32) *ppos;
 
@@ -695,7 +691,6 @@ static ssize_t dlfb_ops_write(struct fb_info *info, const char __user *buf,
 			lines, info->screen_base);
 	}
 
-#endif
 	return result;
 }
 
